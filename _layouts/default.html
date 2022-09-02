@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ site.url }}develop/_site/assets/css/main.css">
+    <!-- Right now this points to the relative path to the branch's built site files, but it should be converted to a GH action to build the site using the CSS in node_modules -->
+    <link rel="stylesheet" href="{{ site.url }}/develop/_site/assets/css/main.css">
   </head>
   <body>
     <nav>
