@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Canada National Topographic System - British Columbia</title>
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+  </head>
+  <body>
+    <nav>
+      <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-6 flex-col md:flex-row items-center">
+          <a href="http://localhost:4000" class="no-underline flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <span class="text-xl">Map-o-Matic</span>
+          </a>
+          <!-- <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+            <a class="nav-links">First Link</a>
+            <a class="nav-links">Second Link</a>
+            <a class="nav-links">Third Link</a>
+            <a class="nav-links">Fourth Link</a>
+          </nav> -->
+          <!-- <button class="inline-flex items-center bg-nord10 border-0 py-1 px-3 focus:outline-none hover:bg-nord9 rounded text-nord6 mt-4 md:mt-0">Information
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button> -->
+        </div>
+      </header>
+    </nav>
+   
+
+
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 py-3 mx-auto">
+         
+          <div class="container mx-auto">
+            <!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+<!-- Import Turf Module - Needed to calculate bounding boxes -->
+<script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
+
+</head>
+<body>
+
+    <div class="mapcontainer">
+        <div class="flex space-x-2 ">
+            <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-nord1 text-white rounded-full">Scale 1:50,000</span>
+            <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-nord7 text-white rounded-full">Years 1930s-2010s</span>
+          </div>
+        <h1>Canada National Topographic System - British Columbia</h1>
+        <a href="https://www.library.ubc.ca"><button class="btn-light">More info</button></a>
+        <div id="map"></div>
+        <button id="zoomto" class="btn-blue">Fit map to bounds</button>
+    </div>
+    <div class="featurecontainer">
+        <div id="features"></div>
+    </div>
+
+<pre id="json"></pre>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZWN0MTIzIiwiYSI6ImNranAwN2V5cjA0OGwyc3RjMG81YmY5dzAifQ.E1gXN2BWib0Z0pnS95iOtg';
+
+// Location of the geojson
+// Specifying here allows for it to be more easily changed.
+// There is also an option where we could load .geojsons local storage if desired.
+const dPath = 'https://raw.githubusercontent.com/ubc-lib-geo/mapbox-for-openindexmaps/main/data/nts-092-50k_Filled.geojson';
+
+// There isn't an explicit way to get the bounds of a geojson with GLJS
+//   - seems there should be?
+// This function allows us to:
+// Read any geojson from a URL
+async function mapData(){
+    //  fetch() retreives data from a URL
+    //   - Its an asynchronous command, returns a promise to retreive a value
+    //   - By keeping everything in the mapData() function, commands are applied the value not the promise
+    const data = await fetch(dPath, {
+                                headers: {
+                                'Accept': 'application/json'
+                                }
+                            });
+    //  Read geojson from the fetched value
+    const geoJson = await data.json();
+    //  Turf moddule allows us to get the bounding box of a geojson 
+    var bbox = turf.extent(geoJson);
+    //  fit() will fit the map to the bounding box of our geojson
+    //  Called later after map is initialized
+    function fit() {
+                    map.fitBounds(bbox, {padding: 50});
+                    }
+
+    //  Create the map - zoom and center are arbitrary
+    const map = new mapboxgl.Map({
+                container: 'map',
+                zoom: 4,
+                center: [-125.193328, 50.506185],
+                style: 'mapbox://styles/ect123/ck4ym048y4upi1cmzoq53immx'
+                });
+    map.addControl(new mapboxgl.NavigationControl());
+    //  Fit to bbox, overwrite the center/zoom
+    fit();
+    //  On load - add geojson
+    map.on('load', function() {
+
+    //  Add the geojson as a map source
+        map.addSource('Data Layer', {
+        type: 'geojson',
+        data: geoJson
+        });
+
+    //  Add the layer, reference the source to minimize redundancy
+    map.addLayer({
+                'id': 'Data Layer Values',
+                'type': 'fill',
+                'source': 'Data Layer',
+                'layout': {},
+                    'paint': {
+                        'fill-color': '#FF8484',
+                        'fill-opacity': 0,
+                        'fill-outline-color': 'black'
+                    },
+                });
+        
+    // skeleton outline of the grid
+    map.addLayer({
+                'id': 'Data Layer Frame',
+                'type': 'line',
+                'source': 'Data Layer',
+                'layout': {},
+                    'paint': {
+                        'line-color': '#4c566a',
+                        'line-width': .5
+                    },
+                });
+    
+
+
+    // Call fit when clicking the zoomto button
+    document.getElementById('zoomto').addEventListener('click', () => {
+        fit()
+    });
+    });
+
+    // Create an empty marker
+    const marker = new mapboxgl.Marker();
+    // Function to add the marker
+    function add_marker (event) {
+        var coordinates = event.lngLat;
+        console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
+        marker.setLngLat(coordinates).addTo(map);
+        }
+        
+    // Display desired attributes on click
+    map.on('click', (e) => {
+        // Add the marker (show where the click is)
+        add_marker(e);
+
+        // Get features at point click
+        const features = map.queryRenderedFeatures(e.point, {layers: ['Data Layer Values']});
+         // Limit the number of properties we're displaying for legibility and performance
+       
+        // Create the table
+
+        function makeTable (json) {
+            var tbl = ('<table width = 100%><tr>');
+            for (var key in features[0].properties){
+                tbl = tbl+'<th>'+key+'</th>';
+            };
+            tbl = tbl + '</tr>'
+            for (var i = 0; i < features.length; i++) {
+                tbl = tbl+"<tr>"
+                // var keys = Object.keys(obj);
+                for (var key in features[i].properties)
+                    tbl = tbl+("<td>" + features[i].properties[key] + "</td>");
+                    // tr = tr+("<td>" + json[i].properties.label + "</td>");
+                    // tr = tr+("<td>" + json[i].properties.label + "</td>");
+                tbl = tbl+"</tr>"
+            };
+            tbl = tbl +'</table>';
+            return tbl;
+            }
+
+        // document.getElementById('features').innerHTML = displayFeatures[0].properties //makeTable(displayFeatures)
+        document.getElementById('features').innerHTML = makeTable()
+        
+    });
+
+    
+
+
+
+
+};
+
+// Call mapData() to initalize the map
+mapData();
+
+</script>
+ 
+</body>
+</html>
+ 
+            </div>
+          </div>
+    </section>
+    <footer>
+      <footer class="text-gray-600 body-font">
+        <div class="container mb-4 px-0 py-0 mx-auto flex items-center sm:flex-row flex-col">
+          <!-- <p class="text-xs text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p> -->
+          <p class="text-xs text-gray-500 sm:ml-2 sm:pl-0 sm:py-2 sm:mt-0 mt-4"> <a class="flex title-font font-medium items-center md:justify-start justify-center no-underline">
+            <span class="ml-3 text-xs">Brought to you by UBC Library Research Commons</span>
+          </a>
+          </p>
+          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+            <!-- <a class="text-gray-500" href="https://www.google.com/">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500" href="https://www.google.com/">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a class="ml-3 text-gray-500" href="https://www.google.com/">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+              </svg>
+            </a>
+            <a class="ml-3 mr-4 text-gray-500" href="https://www.google.com/">
+              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                <circle cx="4" cy="4" r="2" stroke="none"></circle>
+              </svg>
+            </a> -->
+          </span>
+        </div>
+      </footer>
+    </footer>
+</body>
+</html>
