@@ -1,4 +1,4 @@
-url: "" # The base hostname & protocol for your site, e.g. http://example.com
+url: "https://ubc-lib-geo.github.io/map-o-matic/" # The base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # The subpath of your site, e.g. /blog
 title: "Map-o-Matic" # The name of your site, e.g. '[YOUR LIBRARY]'s Topo Map Finder'.
 plugins:
