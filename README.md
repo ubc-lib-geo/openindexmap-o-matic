@@ -18,6 +18,20 @@ The main components of this project include:
 Thanks to [EvanLovely's csv_to_jekyll](https://github.com/EvanLovely/csv_to_jekyll), [crumb1le's tailwind-nord](https://github.com/crumb1e/tailwind-nord) and [June-Skeeter's mapbox-for-openindexmaps](https://github.com/ubc-lib-geo/mapbox-for-openindexmaps).
 
 # Documentation
-Is coming soon...    
+
+Required:     
+- Ruby
+- Jekyll
+- Node.js
+
+Steps after these are installed:    
+- clone repo and `cd` into directory
+- `npm install` to install required Node packages. This might take a minute.
+- `bundle exec jekyll serve` will install all the required Bundler gems and serve the site locally. If you get this far – GREAT. You can now begin your local customization. 
+
+[more on that like `_config.yml` settings, layout settings, metadata, etc.] 
+
+- once the updates are ready, we need to build the site with `jekyll build`. This will create a new site in the `_site` directory. But wait– we're not done! 
+- now we need to run `npm run deploy` to push all of the files in `_site` to the `gh-pages` branch.
 
 
