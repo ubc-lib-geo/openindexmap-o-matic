@@ -1,9 +1,10 @@
 ---
-layout: map-item
-title: Canada National Topographic System - British Columbia
-years-published: 1930s-2010s
+layout: map-item 
+title: British Columbia, National Topographic System, 1:50,000
 scale: 1:50,000
-complete: complete
-info-url: https://www.library.ubc.ca
-geojson-url: https://raw.githubusercontent.com/ubc-lib-geo/mapbox-for-openindexmaps/main/data/nts-092-50k_Filled.geojson
+years_published: 1909-2011
+location: British Columbia
+nosheets: 4028
+infourl: http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=6538787
+geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/canada_britishColumbia_50k_nts.geojson
 ---
