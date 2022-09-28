@@ -1,5 +1,6 @@
 ---
 layout: map-item 
+slug: bc-columbia-river-basin
 title: Columbia River Basin, British Columbia
 scale: 1:31,680
 years_published: 1958

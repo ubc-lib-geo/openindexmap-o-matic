@@ -1,5 +1,6 @@
 ---
 layout: map-item 
+slug: bc-nts-50k
 title: British Columbia, National Topographic System, 1:50,000
 scale: 1:50,000
 years_published: 1909-2011

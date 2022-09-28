@@ -1,6 +1,7 @@
 ---
 layout: map-item 
-title: China proper SW 1:250,000
+slug: china-ams-l582-250k
+title: China proper SW 1:250,000 (AMS L582)
 scale: 1:250,000
 years_published: 1945-1949
 location: China

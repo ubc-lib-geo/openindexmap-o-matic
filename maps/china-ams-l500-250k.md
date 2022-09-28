@@ -1,6 +1,7 @@
 ---
 layout: map-item 
-title: China 1:250,000 prepared by the Army Map Service 
+slug: china-ams-l500-250k
+title: China 1:250,000 prepared by the Army Map Service (AMS L500)
 scale: 1:250,000
 years_published: 1955-1964
 location: China

@@ -1,5 +1,6 @@
 ---
 layout: map-item 
+slug: bc-ifcs
 title: Interim Forest Cover Series, British Columbia
 scale: 1:126,720
 years_published: 1956-1958

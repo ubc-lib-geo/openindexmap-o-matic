@@ -1,5 +1,6 @@
 ---
 layout: map-item 
+slug: ab-nts-250k
 title: Alberta, National Topographic System, 1:50,000
 scale: 1:50,000
 years_published: 1918-2005

@@ -1,5 +1,6 @@
 ---
 layout: map-item 
+slug: canada-nts-25k
 title: Canada, National Topographic System, 1:25,000
 scale: 1:25,000
 years_published: 1934-1977

@@ -1,6 +1,7 @@
 ---
 layout: map-item 
-title: China proper NW 1:250,000
+slug: china-ams-l532-250k
+title: China proper NW 1:250,000 (AMS L532)
 scale: 1:250,000
 years_published: 1945
 location: China

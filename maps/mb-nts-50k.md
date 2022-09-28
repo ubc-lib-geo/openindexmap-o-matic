@@ -1,5 +1,6 @@
 ---
 layout: map-item 
+slug: mb-nts-50k
 title: Manitoba, National Topographic System, 1:50,000
 scale: 1:50,000
 years_published: 1933-2011
