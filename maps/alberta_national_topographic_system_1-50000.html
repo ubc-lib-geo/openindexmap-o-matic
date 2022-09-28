@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title>British Columbia, National Topographic System, 1:50,000</title>
+    <title>Alberta, National Topographic System, 1:50,000</title>
     <link rel="stylesheet" href="https://ubc-lib-geo.github.io/map-o-matic/assets/css/main.css">
   </head>
   <body>
@@ -50,10 +50,10 @@
     <div class="mapcontainer">
         <div class="flex space-x-2 ">
             <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-nord1 text-white rounded-full">Scale 1:50,000</span>
-            <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-nord7 text-white rounded-full">Years 1909-2011</span>
-            <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-nord10 text-white rounded-full">4028 map sheets</span>
+            <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-nord7 text-white rounded-full">Years 1918-2005</span>
+            <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-nord10 text-white rounded-full">2277 map sheets</span>
           </div>
-        <h1>British Columbia, National Topographic System, 1:50,000</h1>
+        <h1>Alberta, National Topographic System, 1:50,000</h1>
         <a href="http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=6538787"><button class="btn-light">More info</button></a>
         <div id="map"></div>
         <button id="zoomto" class="btn-blue">Reset map</button>
@@ -69,7 +69,7 @@
 // Location of the geojson
 // Specifying here allows for it to be more easily changed.
 // There is also an option where we could load .geojsons local storage if desired.
-const dPath = 'https://ubc-lib-geo.github.io/spatial-indexes/canada_britishColumbia_50k_nts.geojson';
+const dPath = 'https://ubc-lib-geo.github.io/spatial-indexes/canada_alberta_50k_nts.geojson';
 
 // There isn't an explicit way to get the bounds of a geojson with GLJS
 //   - seems there should be?
