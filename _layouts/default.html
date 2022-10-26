@@ -1,77 +1,43 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ site.url }}/assets/css/main.css">
-  </head>
-  <body>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body>
+
+  <header class="site-header">
     <nav>
-      <header class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-wrap p-6 flex-col md:flex-row items-center">
-          <a href="{{ site.url }}" class="no-underline flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <span class="text-xl">{{ site.title }}</span>
-          </a>
-          <!-- <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-            <a class="nav-links">First Link</a>
-            <a class="nav-links">Second Link</a>
-            <a class="nav-links">Third Link</a>
-            <a class="nav-links">Fourth Link</a>
-          </nav> -->
-          <!-- <button class="inline-flex items-center bg-nord10 border-0 py-1 px-3 focus:outline-none hover:bg-nord9 rounded text-nord6 mt-4 md:mt-0">Information
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button> -->
-        </div>
-      </header>
+      <div class="wrapper">
+        <a href="{{ site.url }}" >
+          <h1 class="site-title">{{ site.title }}</h1>
+        </a>
+      </div>
     </nav>
-   
+  </header>
+  
+  
+  <main class="page-content">
+    <div class="wrapper">
+      <p>
+          {{ content }} 
+      </p>
+    </div>
+  </main>
 
+  <footer class="site-footer">
+    <div class="wrapper">
+      <!-- <p class="text-xs text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p> -->
+      <a href="">
+        <h2 class="footer-heading">Brought to you by UBC Library Research Commons</h2>
+      </a>
+    </div>
+  </footer>
 
-      <section class="text-gray-600 body-font">
-        <div class="container px-5 py-3 mx-auto">
-         
-          <div class="container mx-auto">
-            {{ content }} 
-            </div>
-          </div>
-    </section>
-    <footer>
-      <footer class="text-gray-600 body-font">
-        <div class="container mb-4 px-0 py-0 mx-auto flex items-center sm:flex-row flex-col">
-          <!-- <p class="text-xs text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p> -->
-          <p class="text-xs text-gray-500 sm:ml-2 sm:pl-0 sm:py-2 sm:mt-0 mt-4"> <a class="flex title-font font-medium items-center md:justify-start justify-center no-underline">
-            <span class="ml-3 text-xs">Brought to you by UBC Library Research Commons</span>
-          </a>
-          </p>
-          <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-            <!-- <a class="text-gray-500" href="https://www.google.com/">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-              </svg>
-            </a>
-            <a class="ml-3 text-gray-500" href="https://www.google.com/">
-              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-              </svg>
-            </a>
-            <a class="ml-3 text-gray-500" href="https://www.google.com/">
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-              </svg>
-            </a>
-            <a class="ml-3 mr-4 text-gray-500" href="https://www.google.com/">
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
-                <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-                <circle cx="4" cy="4" r="2" stroke="none"></circle>
-              </svg>
-            </a> -->
-          </span>
-        </div>
-      </footer>
-    </footer>
 </body>
+
 </html>

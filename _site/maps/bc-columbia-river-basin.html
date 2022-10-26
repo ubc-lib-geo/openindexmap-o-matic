@@ -1,7 +1,30 @@
---- 
-layout: default
----
 <!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Columbia River Basin, British Columbia</title>
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav>
+      <div class="wrapper">
+        <a href="http://localhost:4000" >
+          <h1 class="site-title">Map-o-Matic</h1>
+        </a>
+      </div>
+    </nav>
+  </header>
+  
+  
+  <main class="page-content">
+    <div class="wrapper">
+      <p>
+          <!DOCTYPE html>
 <html>
 
 <head>
@@ -16,12 +39,12 @@ layout: default
 
 <body>
     <div class="mapinfowrapper">
-        <span class="mapinfo">Scale {{ page.scale }}</span>
-        <span class="mapinfo">Years {{ page.years_published }}</span>
-        <span class="mapinfo">{{ page.nosheets }} map sheets</span>
+        <span class="mapinfo">Scale 1:31,680</span>
+        <span class="mapinfo">Years 1958</span>
+        <span class="mapinfo">97 map sheets</span>
     </div>
-    <h1 class="page-heading">{{ page.title }}</h1>
-    <a href="{{ page.infourl }}" class="buttonlink">More info</a>
+    <h1 class="page-heading">Columbia River Basin, British Columbia</h1>
+    <a href="http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=2824094" class="buttonlink">More info</a>
     <button id="zoomto" class="btn-control">Reset map</button>
     <div class="mapcontainer">
         <div id="map"></div>
@@ -31,12 +54,12 @@ layout: default
     </div>
 
 <script>
-	mapboxgl.accessToken = '{{ site.mapbox-access-token }}';
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZWN0MTIzIiwiYSI6ImNranAwN2V5cjA0OGwyc3RjMG81YmY5dzAifQ.E1gXN2BWib0Z0pnS95iOtg';
 
 // Location of the geojson
 // Specifying here allows for it to be more easily changed.
 // There is also an option where we could load .geojsons local storage if desired.
-const dPath = '{{ page.geojsonurl }}';
+const dPath = 'https://ubc-lib-geo.github.io/spatial-indexes/canada_britishColumbia_columbiaRiverBasin_1958.geojson';
 
 // There isn't an explicit way to get the bounds of a geojson with GLJS
 //   - seems there should be?
@@ -66,7 +89,7 @@ async function mapData(){
                 container: 'map',
                 zoom: 4,
                 center: [-125.193328, 50.506185],
-                style: '{{ site.mapbox-style }}'
+                style: 'mapbox://styles/ect123/ck4ym048y4upi1cmzoq53immx'
                 });
     map.addControl(new mapboxgl.NavigationControl());
     //  Fit to bbox, overwrite the center/zoom
@@ -170,4 +193,21 @@ mapData();
 </script>
  
 </body>
+</html>
+ 
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrapper">
+      <!-- <p class="text-xs text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p> -->
+      <a href="">
+        <h2 class="footer-heading">Brought to you by UBC Library Research Commons</h2>
+      </a>
+    </div>
+  </footer>
+
+</body>
+
 </html>
