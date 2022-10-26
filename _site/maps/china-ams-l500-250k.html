@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>China 1:250,000 prepared by the Army Map Service (AMS L500)</title>
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav>
+      <div class="wrapper">
+        <a href="http://localhost:4000" >
+          <h1 class="site-title">Map-o-Matic</h1>
+        </a>
+      </div>
+    </nav>
+  </header>
+  
+  
+  <main class="page-content">
+    <div class="wrapper">
+      <p>
+          <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/main.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+    <!-- Import Turf Module - Needed to calculate bounding boxes -->
+    <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
+</head>
+
+<body>
+    <div class="mapinfowrapper">
+        <span class="mapinfo">Scale 1:250,000</span>
+        <span class="mapinfo">Years 1955-1964</span>
+        <span class="mapinfo">104 map sheets</span>
+    </div>
+    <h1 class="page-heading">China 1:250,000 prepared by the Army Map Service (AMS L500)</h1>
+    <a href="http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=2808652" class="buttonlink">More info</a>
+    <button id="zoomto" class="btn-control">Reset map</button>
+    <div class="mapcontainer">
+        <div id="map"></div>
+    </div>
+    <div class="featurecontainer">
+        <div id="features"></div>
+    </div>
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZWN0MTIzIiwiYSI6ImNranAwN2V5cjA0OGwyc3RjMG81YmY5dzAifQ.E1gXN2BWib0Z0pnS95iOtg';
+
+// Location of the geojson
+// Specifying here allows for it to be more easily changed.
+// There is also an option where we could load .geojsons local storage if desired.
+const dPath = 'https://ubc-lib-geo.github.io/spatial-indexes/china_250k_L500.geojson';
+
+// There isn't an explicit way to get the bounds of a geojson with GLJS
+//   - seems there should be?
+// This function allows us to:
+// Read any geojson from a URL
+async function mapData(){
+    //  fetch() retreives data from a URL
+    //   - Its an asynchronous command, returns a promise to retreive a value
+    //   - By keeping everything in the mapData() function, commands are applied the value not the promise
+    const data = await fetch(dPath, {
+                                headers: {
+                                'Accept': 'application/json'
+                                }
+                            });
+    //  Read geojson from the fetched value
+    const geoJson = await data.json();
+    //  Turf moddule allows us to get the bounding box of a geojson 
+    var bbox = turf.extent(geoJson);
+    //  fit() will fit the map to the bounding box of our geojson
+    //  Called later after map is initialized
+    function fit() {
+                    map.fitBounds(bbox, {padding: 50});
+                    }
+
+    //  Create the map - zoom and center are arbitrary
+    const map = new mapboxgl.Map({
+                container: 'map',
+                zoom: 4,
+                center: [-125.193328, 50.506185],
+                style: 'mapbox://styles/ect123/ck4ym048y4upi1cmzoq53immx'
+                });
+    map.addControl(new mapboxgl.NavigationControl());
+    //  Fit to bbox, overwrite the center/zoom
+    fit();
+    //  On load - add geojson
+    map.on('load', function() {
+
+    //  Add the geojson as a map source
+        map.addSource('Data Layer', {
+        type: 'geojson',
+        data: geoJson
+        });
+
+    //  Add the layer, reference the source to minimize redundancy
+    map.addLayer({
+                'id': 'Data Layer Values',
+                'type': 'fill',
+                'source': 'Data Layer',
+                'layout': {},
+                    'paint': {
+                        'fill-color': '#FF8484',
+                        'fill-opacity': 0,
+                        'fill-outline-color': 'black'
+                    },
+                });
+        
+    // skeleton outline of the grid
+    map.addLayer({
+                'id': 'Data Layer Frame',
+                'type': 'line',
+                'source': 'Data Layer',
+                'layout': {},
+                    'paint': {
+                        'line-color': '#4c566a',
+                        'line-width': .5
+                    },
+                });
+    
+
+
+    // Call fit when clicking the zoomto button
+    document.getElementById('zoomto').addEventListener('click', () => {
+        fit()
+    });
+    });
+
+    // Create an empty marker
+    const marker = new mapboxgl.Marker();
+    // Function to add the marker
+    function add_marker (event) {
+        var coordinates = event.lngLat;
+        console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
+        marker.setLngLat(coordinates).addTo(map);
+        }
+        
+    // Display desired attributes on click
+    map.on('click', (e) => {
+        // Add the marker (show where the click is)
+        add_marker(e);
+
+        // Get features at point click
+        const features = map.queryRenderedFeatures(e.point, {layers: ['Data Layer Values']});
+         // Limit the number of properties we're displaying for legibility and performance
+       
+        // Create the table
+
+        function makeTable (json) {
+            var tbl = ('<table width = 100%><tr>');
+            for (var key in features[0].properties){
+                tbl = tbl+'<th>'+key+'</th>';
+            };
+            tbl = tbl + '</tr>'
+            for (var i = 0; i < features.length; i++) {
+                tbl = tbl+"<tr>"
+                // var keys = Object.keys(obj);
+                for (var key in features[i].properties)
+                    tbl = tbl+("<td>" + features[i].properties[key] + "</td>");
+                    // tr = tr+("<td>" + json[i].properties.label + "</td>");
+                    // tr = tr+("<td>" + json[i].properties.label + "</td>");
+                tbl = tbl+"</tr>"
+            };
+            tbl = tbl +'</table>';
+            return tbl;
+            }
+
+        // document.getElementById('features').innerHTML = displayFeatures[0].properties //makeTable(displayFeatures)
+        document.getElementById('features').innerHTML = makeTable()
+        
+    });
+
+    
+
+
+
+
+};
+
+// Call mapData() to initalize the map
+mapData();
+
+</script>
+ 
+</body>
+</html>
+ 
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrapper">
+      <!-- <p class="text-xs text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p> -->
+      <a href="">
+        <h2 class="footer-heading">Brought to you by UBC Library Research Commons</h2>
+      </a>
+    </div>
+  </footer>
+
+</body>
+
+</html>
