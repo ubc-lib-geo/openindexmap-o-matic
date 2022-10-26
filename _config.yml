@@ -6,6 +6,7 @@
 # feature for the data you need to update frequently.
 #
 url: "https://ubc-lib-geo.github.io/openindexmap-o-matic" # The base hostname & protocol for your site, e.g. http://example.com
+root: /openindexmap-o-matic
 baseurl: "" # The subpath of your site, e.g. /blog
 title: "Map-o-Matic" # The name of your site, e.g. '[YOUR LIBRARY]'s Topo Map Finder'.
 theme: minima
