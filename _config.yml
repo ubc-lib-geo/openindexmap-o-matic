@@ -1,8 +1,0 @@
-url: "https://ubc-lib-geo.github.io/map-o-matic" # The base hostname & protocol for your site, e.g. http://example.com
-baseurl: "" # The subpath of your site, e.g. /blog
-title: "Map-o-Matic" # The name of your site, e.g. '[YOUR LIBRARY]'s Topo Map Finder'.
-plugins:
-  - jekyll-postcss
-
-mapbox-access-token: "pk.eyJ1IjoiZWN0MTIzIiwiYSI6ImNranAwN2V5cjA0OGwyc3RjMG81YmY5dzAifQ.E1gXN2BWib0Z0pnS95iOtg" # Replace with your own token - required to use Mapbox's vector tile servers.
-mapbox-style: "mapbox://styles/ect123/ck4ym048y4upi1cmzoq53immx" # Your preferred Mapbox style ID to be used for your basemap
