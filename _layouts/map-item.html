@@ -25,6 +25,7 @@ layout: default
     <div class="mapcontainer">
         <div id="map"></div>
     </div>
+    <span> </span>
     <div class="featurecontainer">
         <div id="features"></div>
     </div>
@@ -126,34 +127,108 @@ async function mapData(){
     map.on('click', (e) => {
         // Add the marker (show where the click is)
         add_marker(e);
+       
 
         // Get features at point click
         const features = map.queryRenderedFeatures(e.point, {layers: ['Data Layer Values']});
          // Limit the number of properties we're displaying for legibility and performance
+
+       
        
         // Create the table
 
-        function makeTable (json) {
+        function makeTable(rArray) {
             var tbl = ('<table width = 100%><tr>');
-            for (var key in features[0].properties){
-                tbl = tbl+'<th>'+key+'</th>';
-            };
-            tbl = tbl + '</tr>'
+
+            //create header
+            //
+            var display = "<button class=\"collapseHeader\"><table><tr>  <th>Label</th> <th> Title</th> <th>Date Published</th><th>  </th></tr> </table></button> ";
+            var curLabel;
+            var curTitle;
+            var curDate;
+
+
+            //enclose it in a scrollable thing?? (idk how)
+            //for loop to create all the collapsible stuff
             for (var i = 0; i < features.length; i++) {
-                tbl = tbl+"<tr>"
-                // var keys = Object.keys(obj);
-                for (var key in features[i].properties)
-                    tbl = tbl+("<td>" + features[i].properties[key] + "</td>");
-                    // tr = tr+("<td>" + json[i].properties.label + "</td>");
-                    // tr = tr+("<td>" + json[i].properties.label + "</td>");
-                tbl = tbl+"</tr>"
-            };
-            tbl = tbl +'</table>';
-            return tbl;
+
+                curLabel = "";
+
+                curTitle = "";
+
+                curDate = "";
+
+                //make sure they have titles etc before adding them
+                if (features[i].properties.label) {
+                    curLabel = features[i].properties.label;
+
+                }
+                if (features[i].properties.title) {
+                    curTitle = features[i].properties.title;
+                }
+                if (features[i].properties.datePub) {
+                    curDate = features[i].properties.datePub;
+                }
+
+                //create title info  
+                var str1 = "<button  type=\"button\" class=\"collapsible\"><table><tr>  <th> "
+                var str2 = "</th> <th>"
+                display = display + str1 + curLabel + str2 + curTitle + "</th> <th>" + curDate + "</th><th>"
+
+                //add image link
+                if (features[i].properties.websiteUrl) {
+                    display = display + "<a href=\" " + features[i].properties.websiteUrl + "\" ><button class=\"btn-blue\">Map</button></a></th>"
+                }
+
+                display = display + "</th></tr> </table></button> "
+
+                //add info to dropdown
+                display = display + "<div class=\"content\">"
+                for (var key in features[i].properties) {
+                    var info;
+
+                    if (key == "websiteUrl" || key == "download" || key == "physHold") {
+                        //change from download!!!
+                        info = "<a href=\" " + features[i].properties[key] + "\">" + features[i].properties[key] + " </a>"
+
+                        display = display + "<span><b>" + key + ":   </b>" + info + "</span> <br>";
+                    } else {
+                        info = features[i].properties[key]
+                        display = display + "<p><b>" + key + ":   </b>" + info + "</p> ";
+                    }
+
+
+
+                }
+
+
+                display = display + "</div>"
             }
+
+            console.log(display)
+            return display
+        }
+
+
 
         // document.getElementById('features').innerHTML = displayFeatures[0].properties //makeTable(displayFeatures)
         document.getElementById('features').innerHTML = makeTable()
+
+        //add listeners
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
         
     });
 
