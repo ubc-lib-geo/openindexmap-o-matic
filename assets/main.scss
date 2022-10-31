@@ -32,20 +32,26 @@
 }
 
 #features {
-    display: flex;
+    width: 100%;
+    /*
     width: 100%;
     overflow: auto;
     background: rgba(255, 255, 255, 0.8);
+               */
+   
+   
 }
 
-.featurecontainer {
+.featurecontainer { 
     display: flex;  
     width: 100%; 
     height: 25%;
+                        
 }
 
 button, .buttonlink {
-    background-color: #3386c0;
+    
+        background-color: #3386c0;
     color: #fff;
     font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     border: none;
@@ -54,6 +60,7 @@ button, .buttonlink {
     border-radius: 50px;
     font-size: medium;
     display: inline-block;
+ 
 }
 
 button:hover, .buttonlink:hover{
@@ -66,11 +73,86 @@ button:hover, .buttonlink:hover{
     color:#fff;
 }
 
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
+
 
 .site-header { 
     border-top: none;
 }
+
+.content {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+
+table {
+    /*table-layout: fixed; */
+    width: 90%;
+
+}
+
+th, td {
+    width: 30%;
+    overflow: auto;
+
+
+}
+
+table, th, td {
+    border: none !important;
+    background-color: transparent !important;
+    padding: 0px !important
+}
+
+.collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    margin-bottom: 0px !important;
+    border-radius: 0px;
+    display: tight;
+}
+
+.collapseHeader {
+    background-color: #eee;
+    color: #444;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    margin-bottom: 0px !important;
+    border-radius: 0px;
+    display: tight;
+}
+
+.collapsible:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+    background-color: #ccc;
+}
+.collapseHeader:hover {
+    background-color: #ccc}
+
+
+
