@@ -68,6 +68,7 @@ async function mapData(){
                 style: '{{ site.mapbox-style }}'
                 });
     map.addControl(new mapboxgl.NavigationControl());
+    map.scrollZoom.disable();
     //  Fit to bbox, overwrite the center/zoom
     fit();
     //  On load - add geojson
