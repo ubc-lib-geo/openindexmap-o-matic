@@ -151,8 +151,11 @@ table, th, td {
 .active, .collapsible:hover {
     background-color: #ccc;
 }
+
 .collapseHeader:hover {
-    background-color: #ccc}
+    background-color: #ccc;
+}
 
-
-
+.footer-link {
+    display: block;
+}
