@@ -9,7 +9,7 @@ Map-o-Matic is a static site theme designed to make interactive [map indexes](ht
 - [Mapbox GL JS](https://www.mapbox.com/mapbox-gljs)
 - [Turf JS](https://turfjs.org/)
 
-## eavily inspired by:
+## Heavily inspired by:
 - [CollectionBuilder](https://collectionbuilder.github.io/)
 - [OpenIndexMaps](https://openindexmaps.org/) 
 
