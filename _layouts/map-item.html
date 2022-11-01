@@ -111,6 +111,8 @@ async function mapData(){
     // Call fit when clicking the zoomto button
     document.getElementById('zoomto').addEventListener('click', () => {
         fit()
+	marker.remove();
+        document.getElementById('features').innerHTML = "";
     });
     });
 
