@@ -66,10 +66,14 @@ async function mapData(){
                 container: 'map',
                 zoom: 4,
                 center: [-125.193328, 50.506185],
-                style: '{{ site.mapbox-style }}'
+                style: '{{ site.mapbox-style }}',
+                pitchWithRotate: false,
+                dragRotate: false,
+                touchZoomRotate: false
                 });
-    map.addControl(new mapboxgl.NavigationControl());
+    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }));
     //  Fit to bbox, overwrite the center/zoom
+    map.scrollZoom.disable();
     fit();
     //  On load - add geojson
     map.on('load', function() {
