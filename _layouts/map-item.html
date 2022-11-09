@@ -69,7 +69,6 @@ async function mapData(){
                 style: '{{ site.mapbox-style }}'
                 });
     map.addControl(new mapboxgl.NavigationControl());
-    map.scrollZoom.disable();
     //  Fit to bbox, overwrite the center/zoom
     fit();
     //  On load - add geojson
@@ -110,9 +109,10 @@ async function mapData(){
 
     // Call fit when clicking the zoomto button
     document.getElementById('zoomto').addEventListener('click', () => {
-        fit()
-	marker.remove();
+        fit();
+        marker.remove();
         document.getElementById('features').innerHTML = "";
+        
     });
     });
 
@@ -135,9 +135,197 @@ async function mapData(){
         const features = map.queryRenderedFeatures(e.point, {layers: ['Data Layer Values']});
          // Limit the number of properties we're displaying for legibility and performance
 
-       
-       
+
+
         // Create the table
+       const OIMnames= [
+            {
+                ELEMENT: "label",
+                USED_FOR: "Sheet/frame no."
+            },
+            {
+                ELEMENT: "labelAlt",
+                USED_FOR: "Alternate sheet/frame no."
+            },
+            {
+                ELEMENT: "labelAlt2",
+                USED_FOR: "Second alternate sheet/frame no."
+            },
+            {
+                ELEMENT: "datePub",
+                USED_FOR: "Publication date"
+            },
+            {
+                ELEMENT: "date",
+                USED_FOR: "Date"
+            },
+            {
+                ELEMENT: "west",
+                USED_FOR: "Westernmost longitude"
+            },
+            {
+                ELEMENT: "east",
+                USED_FOR: "Easternmost longitude"
+            },
+            {
+                ELEMENT: "north",
+                USED_FOR: "Northernmost latitude"
+            },
+            {
+                ELEMENT: "south",
+                USED_FOR: "Southernmost latitude"
+            },
+            {
+                ELEMENT: "location",
+                USED_FOR: "Location"
+            },
+            {
+                ELEMENT: "scale",
+                USED_FOR: "Scale"
+            },
+            {
+                ELEMENT: "color",
+                USED_FOR: "Color"
+            },
+            {
+                ELEMENT: "title",
+                USED_FOR: "Sheet name"
+            },
+            {
+                ELEMENT: "titleAlt",
+                USED_FOR: "Alternate sheet name"
+            },
+            {
+                ELEMENT: "dateSurvey",
+                USED_FOR: "Survey date"
+            },
+            {
+                ELEMENT: "datePhoto",
+                USED_FOR: "Photocorrected date"
+            },
+            {
+                ELEMENT: "dateReprnt",
+                USED_FOR: "Reprint date"
+            },
+            {
+                ELEMENT: "overprint",
+                USED_FOR: "Overprint"
+            },
+            {
+                ELEMENT: "edition",
+                USED_FOR: "Edition"
+            },
+            {
+                ELEMENT: "publisher",
+                USED_FOR: "Publisher"
+            },
+            {
+                ELEMENT: "overlays",
+                USED_FOR: "Overlays"
+            },
+            {
+                ELEMENT: "projection",
+                USED_FOR: "Projection"
+            },
+            {
+                ELEMENT: "lcCallNo",
+                USED_FOR: "LC Call Number"
+            },
+            {
+                ELEMENT: "contLines",
+                USED_FOR: "Contour lines"
+            },
+            {
+                ELEMENT: "contInterv",
+                USED_FOR: "Contour interval"
+            },
+            {
+                ELEMENT: "bathLines",
+                USED_FOR: "Bathymetric lines"
+            },
+            {
+                ELEMENT: "bathInterv",
+                USED_FOR: "Bathymetric interval"
+            },
+            {
+                ELEMENT: "primeMer",
+                USED_FOR: "Prime Meridian"
+            },
+            {
+                ELEMENT: "photomos",
+                USED_FOR: "Photomosaic"
+            },
+            {
+                ELEMENT: "bands",
+                USED_FOR: "Bands"
+            },
+            {
+                ELEMENT: "rectificn",
+                USED_FOR: "Rectification"
+            },
+            {
+                ELEMENT: "rollNo",
+                USED_FOR: "Roll number"
+            },
+            {
+                ELEMENT: "inst",
+                USED_FOR: "Institution"
+            },
+            {
+                ELEMENT: "sheetId",
+                USED_FOR: "Sheet ID"
+            },
+            {
+                ELEMENT: "available",
+                USED_FOR: "Available"
+            },
+            {
+                ELEMENT: "physHold",
+                USED_FOR: "Physical holdings"
+            },
+            {
+                ELEMENT: "digHold",
+                USED_FOR: "Digital holdings"
+            },
+            {
+                ELEMENT: "instCallNo",
+                USED_FOR: "Local call number"
+            },
+            {
+                ELEMENT: "recId",
+                USED_FOR: "Record identifier"
+            },
+            {
+                ELEMENT: "download",
+                USED_FOR: "Download URL"
+            },
+            {
+                ELEMENT: "websiteUrl",
+                USED_FOR: "Website URL"
+            },
+            {
+                ELEMENT: "thumbUrl",
+                USED_FOR: "Thumbnail URL"
+            },
+            {
+                ELEMENT: "iiifUrl",
+                USED_FOR: "IIIF URL"
+            },
+            {
+                ELEMENT: "fileName",
+                USED_FOR: "File name"
+            },
+            {
+                ELEMENT: "note",
+                USED_FOR: "Notes"
+            },
+        ];
+        var OIMArray = [];
+        for (var key in OIMnames) {
+            
+            OIMArray.push(OIMnames[key].ELEMENT)
+        }
+       
 
         function makeTable(rArray) {
             var tbl = ('<table width = 100%><tr>');
@@ -171,6 +359,7 @@ async function mapData(){
                 if (features[i].properties.datePub) {
                     curDate = features[i].properties.datePub;
                 }
+                
 
                 //create title info  
                 var str1 = "<button  type=\"button\" class=\"collapsible\"><table><tr>  <th> "
@@ -183,20 +372,30 @@ async function mapData(){
                 }
 
                 display = display + "</th></tr> </table></button> "
+                var name;
+                var index;
 
                 //add info to dropdown
                 display = display + "<div class=\"content\">"
                 for (var key in features[i].properties) {
                     var info;
+                    index = OIMArray.indexOf(key)
+                    console.log(index,key)
+                        if (index == -1) {
+                            name = key;
+                        } else {
+                            name = OIMnames[index].USED_FOR
+                        }
+                    
 
-                    if (key == "websiteUrl" || key == "download" || key == "physHold") {
+                    if (key == "websiteUrl" || key == "download" || key == "physHold" || key == "iiifURL" || key == "digHold") {
                         //change from download!!!
                         info = "<a href=\" " + features[i].properties[key] + "\">" + features[i].properties[key] + " </a>"
 
-                        display = display + "<span><b>" + key + ":   </b>" + info + "</span> <br>";
+                        display = display + "<span><b>" + name + ":   </b>" + info + "</span> <br>";
                     } else {
                         info = features[i].properties[key]
-                        display = display + "<p><b>" + key + ":   </b>" + info + "</p> ";
+                        display = display + "<p><b>" + name + ":   </b>" + info + "</p> ";
                     }
 
 
@@ -207,7 +406,7 @@ async function mapData(){
                 display = display + "</div>"
             }
 
-            console.log(display)
+        
             return display
         }
 
