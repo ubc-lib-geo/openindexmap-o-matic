@@ -143,7 +143,7 @@ async function mapData(){
         // Get features at point click
         const features = map.queryRenderedFeatures(e.point, {layers: ['Data Layer Values']});
          // Limit the number of properties we're displaying for legibility and performance
-    console.log(features)
+   
 
 
 
@@ -415,7 +415,7 @@ async function mapData(){
                 display = display + "</div>"
             }
 
-        console.log(display)
+      
             return display
         }
 
@@ -469,7 +469,7 @@ async function mapData(){
             coll[i].addEventListener("mouseout", function () {
                 
               
-                console.log(ID,"idMouseOut")
+               
                 if (!this.nextElementSibling.style.maxHeight) {
                     map.setFeatureState({
                         'source': 'Data Layer',
@@ -478,7 +478,7 @@ async function mapData(){
                         hover: false
 
                     });
-                    console.log("did it!");
+                   
                     ID = null;
                 }
 
