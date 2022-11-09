@@ -123,6 +123,16 @@ async function mapData(){
         marker.remove();
         document.getElementById('features').innerHTML = "";
 
+        //remove hightlight, if it exists
+        map.setFeatureState({
+            'source': 'Data Layer',
+            'id': ID
+
+        }, {
+            hover: false
+
+        });
+
     });
     });
 
@@ -135,11 +145,22 @@ async function mapData(){
         marker.setLngLat(coordinates).addTo(map);
         }
 
+    //define ID outside of scope of click function
+    var ID =null;
     // Display desired attributes on click
     map.on('click', (e) => {
         // Add the marker (show where the click is)
         add_marker(e);
 
+        //removes highlight if it dropdown was open before clicking a new location
+        map.setFeatureState({
+            'source': 'Data Layer',
+            'id': ID
+            
+        }, {
+            hover: false
+
+        });
 
         // Get features at point click
         const features = map.queryRenderedFeatures(e.point, {layers: ['Data Layer Values']});
@@ -430,7 +451,7 @@ async function mapData(){
         //add listeners
         var coll = document.getElementsByClassName("collapsible");
         var i;
-        var ID;
+      
 
         for (i = 0; i < coll.length; i++) {
 
