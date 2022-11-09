@@ -1,4 +1,4 @@
---- 
+---
 layout: default
 ---
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ layout: default
         <div id="features"></div>
     </div>
 
-<script>
+    <script>
 	mapboxgl.accessToken = '{{ site.mapbox-access-token }}';
 
 // Location of the geojson
@@ -53,7 +53,7 @@ async function mapData(){
                             });
     //  Read geojson from the fetched value
     const geoJson = await data.json();
-    //  Turf moddule allows us to get the bounding box of a geojson 
+    //  Turf moddule allows us to get the bounding box of a geojson
     var bbox = turf.extent(geoJson);
     //  fit() will fit the map to the bounding box of our geojson
     //  Called later after map is initialized
@@ -83,6 +83,7 @@ async function mapData(){
         });
 
     //  Add the layer, reference the source to minimize redundancy
+        //fill opacity is based on a feature-state, hover, which is controlled by the position of the mouse
     map.addLayer({
                 'id': 'Data Layer Values',
                 'type': 'fill',
@@ -97,11 +98,11 @@ async function mapData(){
                             0
                         ],
                         'fill-outline-color': 'black',
-                        
+
                     },
                 });
 
-       
+
     // skeleton outline of the grid
     map.addLayer({
                 'id': 'Data Layer Frame',
@@ -113,7 +114,7 @@ async function mapData(){
                         'line-width': .5
                     },
                 });
-    
+
 
 
     // Call fit when clicking the zoomto button
@@ -121,7 +122,7 @@ async function mapData(){
         fit();
         marker.remove();
         document.getElementById('features').innerHTML = "";
-        
+
     });
     });
 
@@ -133,21 +134,21 @@ async function mapData(){
         console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
         marker.setLngLat(coordinates).addTo(map);
         }
-        
+
     // Display desired attributes on click
     map.on('click', (e) => {
         // Add the marker (show where the click is)
         add_marker(e);
-       
+
 
         // Get features at point click
         const features = map.queryRenderedFeatures(e.point, {layers: ['Data Layer Values']});
          // Limit the number of properties we're displaying for legibility and performance
-   
 
 
 
-        // Create the table
+
+       //OIM names based on table pulled from OIM specifications; second array allows for searching 
        const OIMnames= [
             {
                 ELEMENT: "label",
@@ -332,11 +333,11 @@ async function mapData(){
         ];
         var OIMArray = [];
         for (var key in OIMnames) {
-            
+
             OIMArray.push(OIMnames[key].ELEMENT)
         }
-       
 
+        //Create table
         function makeTable(rArray) {
             var tbl = ('<table width = 100%><tr>');
 
@@ -369,9 +370,10 @@ async function mapData(){
                 if (features[i].properties.datePub) {
                     curDate = features[i].properties.datePub;
                 }
-                
 
-                //create title info  
+
+                //create title info
+                //give table elements the id of the feature they represent so we can access feature element on map
                 var str1 = "<button  type=\"button\" id=\""+ features[i].id.toString() + "\" class=\"collapsible\"><table><tr>  <th> "
                 var str2 = "</th> <th>"
                 display = display + str1 + curLabel + str2 + curTitle + "</th> <th>" + curDate + "</th><th>"
@@ -389,16 +391,17 @@ async function mapData(){
                 display = display + "<div class=\"content\">"
                 for (var key in features[i].properties) {
                     var info;
+                    //search for index of key to find full name in table
                     index = OIMArray.indexOf(key)
                         if (index == -1) {
                             name = key;
                         } else {
                             name = OIMnames[index].USED_FOR
                         }
-                    
 
+                    //make it a hyperlink if it is the appropriate type
                     if (key == "websiteUrl" || key == "download" || key == "physHold" || key == "iiifURL" || key == "digHold") {
-                        //change from download!!!
+                        
                         info = "<a href=\" " + features[i].properties[key] + "\">" + features[i].properties[key] + " </a>"
 
                         display = display + "<span><b>" + name + ":   </b>" + info + "</span> <br>";
@@ -415,7 +418,7 @@ async function mapData(){
                 display = display + "</div>"
             }
 
-      
+
             return display
         }
 
@@ -430,14 +433,15 @@ async function mapData(){
         var ID;
 
         for (i = 0; i < coll.length; i++) {
-           
+
+            //if the element is already expand it, close it. Otherwise, expand it and highlight the polygon
             coll[i].addEventListener("click", function () {
                 this.classList.toggle("active");
                 ID = this.id;
                 var content = this.nextElementSibling;
                 if (content.style.maxHeight) {
                     content.style.maxHeight = null;
-                   
+
                 } else {
                     content.style.maxHeight = content.scrollHeight + "px";
                     map.setFeatureState({
@@ -449,11 +453,12 @@ async function mapData(){
                     });
                 }
             });
-            
+
+            //highlight polygon when mouse enters feature in table
             coll[i].addEventListener("mouseover", function () {
-              
+
                 ID = this.id;
-                
+
                 map.setFeatureState({
                     'source': 'Data Layer',
                     'id': ID
@@ -461,15 +466,14 @@ async function mapData(){
                     hover: true
 
                 });
-                
+
 
 
             });
 
+            //make polygon transparent again when mouse leaves feature in table, unless feature is expanded, in which case keep it highlighted
             coll[i].addEventListener("mouseout", function () {
-                
-              
-               
+
                 if (!this.nextElementSibling.style.maxHeight) {
                     map.setFeatureState({
                         'source': 'Data Layer',
@@ -478,17 +482,17 @@ async function mapData(){
                         hover: false
 
                     });
-                   
+
                     ID = null;
                 }
 
 
             });
         }
-        
+
     });
 
-    
+
 
 
 
@@ -498,7 +502,7 @@ async function mapData(){
 // Call mapData() to initalize the map
 mapData();
 
-</script>
- 
+    </script>
+
 </body>
 </html>
