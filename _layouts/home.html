@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+{{ page.content }}
+
+<h2>Available Map Sets</h2>
+
+<div>
+    {% assign pages = site.pages | where_exp: 'page', 'page.title' %}
+    {% for page in pages %}
+        <div>
+           <h3><a href="{{ site.url }}{{ site.baseurl }}{{ site.indexfolder }}/{{ page.slug }}">{{page.title}}</a></h3>
+           <p>{{ page.location }}</p>
+        </div>
+    {% endfor %}
+</div>
+
