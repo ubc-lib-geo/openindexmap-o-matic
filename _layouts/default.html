@@ -1,24 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8">
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{site.baseurl}}/assets/main.css">
-</head>
+{%- include head.html -%}
+
+<html lang="{{ site.lang | default: "en-US" }}">
 
 <body>
 
-  <header class="site-header">
-    <nav>
-      <div class="wrapper">
-        <a href="{{ site.url }}{{site.baseurl}}" >
-          <h1 class="site-title">{{ site.title }}</h1>
-        </a>
-      </div>
-    </nav>
-  </header>
+  {%- include header.html -%}
   
   
   <main class="page-content">
