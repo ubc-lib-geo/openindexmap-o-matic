@@ -7,8 +7,8 @@
 #
 url: "https://ubc-lib-geo.github.io" # The base hostname & protocol for your site, e.g. http://example.com
 baseurl: "/openindexmap-o-matic" # The subpath of your site, e.g. /blog
-indexfolder: "/maps" # The subpath where index .md files will be stored
-title: "UBC Library Map Set Viewer" # The name of your site, e.g. '[YOUR LIBRARY]'s Topo Map Finder'.
+indexfolder: "/maps" # The subpath where index .md files are be stored
+title: "UBC Library Map Set Viewer" # The name of your site, e.g. '[YOUR LIBRARY]'s Map Set Viewer'.
 theme: minima
 plugins:
   - jekyll-feed
