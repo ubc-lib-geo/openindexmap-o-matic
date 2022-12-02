@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+{{ page.content }}
+
+<h2>Available Map Sets</h2>
+
+<div>
+    {% for map in site.pages %}
+        {% if map.layout == "map-item" %}
+            <div>
+                <h3><a href="{{ site.url }}{{ site.baseurl }}{{ site.indexfolder }}/{{ map.slug }}">{{map.title}}</a></h3>
+                <p>{{ map.location }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
