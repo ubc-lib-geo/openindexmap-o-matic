@@ -33,6 +33,7 @@ The following table represents the metadata elements used for each map sheet. �
 | available | Ready to Use | Available | boolean | Indication if the institution holds the item at this location in any format | true | Optional |
 | label | Map Sheet Number | Sheet/frame no. | string | Alphanumeric code identifying the sheet or frame. The value of this field is used as a tool tip in GeoBlacklight. | 093H12 | Required |
 | labelAlt | Alternate Map Sheet Number | Alternate sheet/frame no. | string | Alphanumeric code for the sheet or frame that was used for previous or subsequent editions, or for when there are multiple labels | NW8 | Optional |
+| lcCallNo | LC Call Number | LC Call Number | string | Library of Congress call number | G6930 s250 .L3 | Optional |
 | location | Location | Location | array[String] | Geographic place name identifying the area covered by the map sheet or air photo frame | [“British Columbia”] | Optional |
 | title | Title | Sheet name | string | Title of map, usually a geographic location on that sheet | Eagle Lake | Required |
 | edition | Edition | Edition | string | Statement indicating the edition of the map sheet | 1 ase | Optional |
