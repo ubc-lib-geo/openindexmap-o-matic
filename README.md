@@ -1,6 +1,15 @@
+# Contents
+- [What is the OpenIndexMap-O-Matic?](#what-is-the-openindexmap-o-matic)
+- [How to Use the OpenIndexMap-O-Matic](#how-to-use-the-openindexmap-o-matic)
+- [Why Use the OpenIndexMaps Specification?](#why-use-the-openindexmaps-specification)
+- [Metadata Elements](#metadata-elements)
+    - [Map Sheet Metadata](#map-sheet-metadata)
+    - [Map Set Metadata](#map-set-metadata)
+- [Implementation with Other Collections](#implementation-with-other-collections)
+
 # What is the OpenIndexMap-O-Matic?
 
-The [OpenIndexMap-O-Matic](https://ubc-lib-geo.github.io/openindexmap-o-matic/) is a finding aid created to allow students, researchers, and other interested parties to visually and geographically navigate the University of British Columbia’s Walter C. Koerner Library map collection. It is a digital index map that displays the physical maps in the collection at the geographic location that they represent. The OpenIndexMap-O-Matic tool is also intended to be usable by other institutions and collections. For more information about how to use the OpenIndexMap-O-Matic for your collection, read “Implementation with Other Collections”.
+The [OpenIndexMap-O-Matic](https://ubc-lib-geo.github.io/openindexmap-o-matic/) is a finding aid created to allow students, researchers, and other interested parties to visually and geographically navigate the University of British Columbia’s Walter C. Koerner Library map collection. It is a digital index map that displays the physical maps in the collection at the geographic location that they represent. The OpenIndexMap-O-Matic tool is also intended to be usable by other institutions and collections. For more information about how to use the OpenIndexMap-O-Matic for your collection, read [Implementation with Other Collections](#implementation-with-other-collections).
 
 # How to Use the OpenIndexMap-O-Matic
 
@@ -60,11 +69,11 @@ At the time of writing, OpenIndexMaps does not provide recommendations for set- 
 
 ***Currently this project is not capable of displaying other institution’s maps. Please check back once it has reached a further state of development.**
 
-Index maps are located in the “maps” folder under the root directory of the project files. Each index map document is stored as an individual markdown (.md) file. Because the OpenIndexMap-O-Matic uses the [Jekyll](https://jekyllrb.com/docs/) framework, each markdown file’s contents must begin and end with a series of three hyphens “---”. This will signal to Jekyll that the information should be read as YAML. These markdown files follow the metadata schema outlined in the “Map Set Metadata” table.
+Index maps are located in the “maps” folder under the root directory of the project files. Each index map document is stored as an individual markdown (.md) file. Because the OpenIndexMap-O-Matic uses the [Jekyll](https://jekyllrb.com/docs/) framework, each markdown file’s contents must begin and end with a series of three hyphens “---”. This will signal to Jekyll that the information should be read as YAML. These markdown files follow the metadata schema outlined in the [Map Set Metadata](#map-set-metadata) table.
 
 To use the OpenIndexMap-O-Matic for your own institution’s geographic data, clone the OpenIndexMap-O-Matic and delete the UBC Library’s maps from the “maps” folder without removing the folder itself. Create markdown files for each of your index maps, ensuring that the file name matches your chosen URL slug element. Then, move each of your markdown files into the “maps” folder.
 
-To create multiple index map files, you may find it easier to write in a spreadsheet editor and run a script to output each map as a markdown file. For this route, ensure that each metadata element from the table is included, along with the triple hyphens before and after the information. Another way to create the index maps is to use the template provided below. Copy these lines of code and paste them into a markdown file. Switch out the placeholder information after each attribute. Note that layout: map-item should remain the same.
+To create multiple index map files, you may find it easier to write in a spreadsheet editor and run a script to output each map as a markdown file. For this route, ensure that each metadata element from the table is included, along with the triple hyphens before and after the information. Another way to create the index maps is to use the template provided below. Copy these lines of code and paste them into a markdown file. Switch out the placeholder information after each attribute. Note that ```layout: map-item``` should remain the same.
 
  ```
  ---
