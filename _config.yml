@@ -16,4 +16,3 @@ mapbox-access-token: "pk.eyJ1IjoiZWN0MTIzIiwiYSI6ImNranAwN2V5cjA0OGwyc3RjMG81YmY
 mapbox-style: "mapbox://styles/ect123/ck4ym048y4upi1cmzoq53immx" # Your preferred Mapbox style ID to be used for your basemap.
 header_pages:
  - about.md
- - tutorial.md
