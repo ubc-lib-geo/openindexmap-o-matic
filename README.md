@@ -16,10 +16,10 @@ The [OpenIndexMap-O-Matic](https://ubc-lib-geo.github.io/openindexmap-o-matic/) 
 - Select an available map set from the home page.
 - Click and drag on the map to move the tool.
 - Zoom in and out by clicking the plus (+) or minus (-) buttons.
-- Click on an outlined shape to see what maps are in the collection. Information about the maps in that area will be displayed below the map tool. 
-- Click the “More Info” button to navigate to the catalogue listing for the map series. 
-- Click the “Reset Map” button to return the tool to its default state. 
-- Click on each map listing to see more detail about a particular map. 
+- Click on an outlined shape to see what maps are in the collection. Information about the maps in that area will be displayed below the map tool.
+- Click the “Open Catalogue” button to navigate to the catalogue listing for the map series.
+- Click the “Reset Map” button to return the tool to its default state.
+- Click on each map listing to see more detail about a particular map.
 
 # Why Use the OpenIndexMaps Specification?
 
