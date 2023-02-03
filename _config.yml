@@ -10,10 +10,12 @@ baseurl: "/openindexmap-o-matic" # The subpath of your site, e.g. /blog
 indexfolder: "/maps" # The subpath where index .md files are be stored
 title: "UBC Library Map Set Viewer" # The name of your site, e.g. '[YOUR LIBRARY]'s Map Set Viewer'.
 theme: minima
+
+
 plugins:
-  - jekyll-feed
-mapbox-access-token: "pk.eyJ1IjoiZWN0MTIzIiwiYSI6ImNranAwN2V5cjA0OGwyc3RjMG81YmY5dzAifQ.E1gXN2BWib0Z0pnS95iOtg" # Replace with your own token - required to use Mapbox's vector tile servers.
-mapbox-style: "mapbox://styles/ect123/ck4ym048y4upi1cmzoq53immx" # Your preferred Mapbox style ID to be used for your basemap.
+  #- jekyll-feed
+mapbox-access-token: "pk.eyJ1IjoidGhlaGVsbG9tYXJ0aWFuIiwiYSI6ImNsMDc1NXBuazF6bXczZXJzd2ZseXB4MDgifQ.gQNA94PswehVHrpv6cBBSw" # Replace with your own token - required to use Mapbox's vector tile servers.
+mapbox-style: "mapbox://styles/mapbox/light-v11" 
 header_pages:
  - about.md
  - tutorial.md

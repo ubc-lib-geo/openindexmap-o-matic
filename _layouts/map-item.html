@@ -69,7 +69,10 @@ async function mapData(){
                 style: '{{ site.mapbox-style }}',
                 pitchWithRotate: false,
                 dragRotate: false,
-                touchZoomRotate: false
+                touchZoomRotate: false,
+                 projection: {
+                     name: 'mercator'
+                    } 
                 });
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }));
     //  Fit to bbox, overwrite the center/zoom
@@ -114,8 +117,8 @@ async function mapData(){
                 'source': 'Data Layer',
                 'layout': {},
                     'paint': {
-                        'line-color': '#4c566a',
-                        'line-width': .5
+                        'line-color': 'maroon',
+                        'line-width': 2
                     },
                 });
 
