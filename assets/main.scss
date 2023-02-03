@@ -38,42 +38,37 @@
     overflow: auto;
     background: rgba(255, 255, 255, 0.8);
                */
-   
-   
 }
 
 .featurecontainer { 
     display: flex;  
     width: 100%; 
-    height: 25%;
-                        
+    height: 25%;                 
 }
 
-button, .buttonlink {
-    
-        background-color: #3386c0;
+#zoomto, .buttonlink {
+    background-color: #3386c0;
     color: #fff;
     font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     border: none;
     padding: 10px 20px;
-    margin-bottom: 20px;
+    margin-right: 10px;
     border-radius: 50px;
     font-size: medium;
     display: inline-block;
- 
+    transition: all 200ms;
 }
 
-button:hover, .buttonlink:hover{
+#zoomto:hover, .buttonlink:hover{
     background-color: #75b8e7;
     text-decoration: none;
-    color:#fff
+    color:#fff;
+    cursor: pointer;
 }
 
 .buttonlink:visited {
     color:#fff;
 }
-
-
 
 .site-header { 
     border-top: none;
@@ -84,8 +79,94 @@ button:hover, .buttonlink:hover{
     background-color: white;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.2s ease-out;
 }
+
+.overlay {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+#buttonWrapper {
+    margin: 50px 0px 15px 0px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#helpButton {
+    color: #000;
+    background-color: rgb(150, 150, 150);
+    font-weight: 700;
+    margin: 0;
+    padding: 5px 15px;
+    position: absolute;
+    right: 0px;
+}
+
+#helpButton:hover {
+    background-color: lightgrey;
+    cursor: help;
+}
+
+#helpContent {
+    margin: 10% auto;
+    background: #fff;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    width: 30%;
+    position: relative;
+}
+
+#helpText {
+    margin: 0;
+    overflow: auto;
+}
+
+#helpText ul {
+    padding: 10px;
+}
+
+#helpText li {
+    padding: 4px;
+}
+
+#helpText h2 {
+    color: #fff;
+    background-color: #3386c0;
+    padding: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+#closeHelp {
+    display: inline;
+    position: absolute;
+    top: 7px;
+    right: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  #closeHelp:hover {
+    color: #FFF;
+  }
 
 /* Style the button that is used to open and close the collapsible content */
 
