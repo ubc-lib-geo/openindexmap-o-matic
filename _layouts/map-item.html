@@ -14,14 +14,38 @@ layout: default
 </head>
 
 <body>
+
     <div class="mapinfowrapper">
         <span class="mapinfo">Scale {{ page.scale }}</span>
         <span class="mapinfo">Years {{ page.years_published }}</span>
         <span class="mapinfo">{{ page.nosheets }} map sheets</span>
     </div>
+
     <h1 class="page-heading">{{ page.title }}</h1>
-    <a href="{{ page.infourl }}" class="buttonlink">More info</a>
-    <button id="zoomto" class="btn-control">Reset map</button>
+
+    <div id="buttonWrapper">
+        <a href="{{ page.infourl }}" class="buttonlink" alt="Open Catalogue">Open Catalogue</a>
+        <button id="zoomto" class="btn-control" alt="Reset Map">Reset Map</button>
+        <a href="#openHelp" id="helpButton" class="buttonlink" alt="Help">&quest;</a>
+    </div>
+
+    <div id="openHelp" class="overlay">
+        <div id="helpContent">
+            <a href="#" id="closeHelp">&times;</a>
+            <div id="helpText">
+                <h2>How to Use the OpenIndexMap-O-Matic</h2>
+                <ul>
+                    <li>Click and drag on the map to move the tool.</li>
+                    <li>Zoom in and out by clicking the plus (+) or minus (-) buttons.</li>
+                    <li>Click on an outlined shape to see what maps are in the collection. Information about the maps in that area will be displayed below the map tool.</li>
+                    <li>Click the “Open Catalogue” button to navigate to the catalogue listing for the map series.</li>
+                    <li>Click the “Reset Map” button to return the tool to its default state.</li>
+                    <li>Click on each map listing to see more detail about a particular map.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <div class="mapcontainer">
         <div id="map"></div>
     </div>

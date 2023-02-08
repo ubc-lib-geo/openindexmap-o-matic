@@ -18,4 +18,3 @@ mapbox-access-token: "pk.eyJ1IjoidGhlaGVsbG9tYXJ0aWFuIiwiYSI6ImNsMDc1NXBuazF6bXc
 mapbox-style: "mapbox://styles/mapbox/light-v11" 
 header_pages:
  - about.md
- - tutorial.md
