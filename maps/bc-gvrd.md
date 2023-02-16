@@ -2,6 +2,7 @@
 layout: map-item 
 slug: bc-gvrd
 title: Greater Vancouver Regional District Land Use Maps
+scale: Varies
 years_published: 1959-1971
 location: British Columbia
 nosheets: 670
