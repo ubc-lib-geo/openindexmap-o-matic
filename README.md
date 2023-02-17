@@ -58,10 +58,10 @@ At the time of writing, OpenIndexMaps does not provide recommendations for set- 
 | --- | --- | --- | --- | --- | --- | --- |
 | slug | | URL slug | string | The name of the part of a URL which will point to a specific map series | canada-nts-500k | Required |
 | title | | Set title | string | The title for the map set, corresponding to the catalogue title when applicable | British Columbia, National Topographic System, 1:50,000 | Required |
-| scale | Scale | Scale | string | The most common scale within the map set | 1:50,000 | Optional |
-| years_published | Years | Years of publication | string | The range of time in years that the map sheets within the set have been published | 1909-2011 | Optional |
-| location | Location | Location | string | The geographic location of the map set | British Columbia | Optional |
-| nosheets | “X” map sheets | Number of Sheets | integer | The number of map sheets within the map set | 4028 | Optional |
+| scale | Scale | Scale | string | The most common scale within the map set | 1:50,000 | Required |
+| years_published | Years | Years of publication | string | The range of time in years that the map sheets within the set have been published | 1909-2011 | Required |
+| location | Location | Location | string | The geographic location of the map set | British Columbia | Required |
+| nosheets | “X” map sheets | Number of Sheets | integer | The number of map sheets within the map set | 4028 | Required |
 | infourl | More info | Information URL | string | A link to the map set on another site, such as a catalogue listing | http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=6538787 | Required |
 | geojsonurl | | GeoJSON URL | string | A link to valid GeoJSON that will supply the geographic data for the map set, can be absolute or relative paths | https://ubc-lib-geo.github.io/spatial-indexes/canada_britishColumbia_50k_nts.geojson | Required |
 
