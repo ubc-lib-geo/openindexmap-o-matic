@@ -157,6 +157,12 @@
     border-top-left-radius: 15px;
 }
 
+#scrollHelp {
+    display: block;
+    overflow: auto;
+    height: 300px;
+}
+
 #closeHelp {
     float: right;
     padding: 0 10px;
