@@ -2,7 +2,7 @@
 layout: map-item 
 slug: vancouver-yaletown
 title: Yaletown, Vancouver, 1:480 
-scale: 1:Number
+scale: 1:480
 years_published: 1967
 location: Location
 nosheets: 6
