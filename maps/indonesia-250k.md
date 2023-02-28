@@ -7,5 +7,5 @@ years_published: 1984-1986
 location: Indonesia
 nosheets: 58
 infourl: http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=2810697
-geojsonurl: https://raw.githubusercontent.com/ubc-lib-geo/spatial-indexes/master/indonesia_250k.geojson
+geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/asia/indonesia_250k.geojson
 ---

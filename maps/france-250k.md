@@ -7,5 +7,5 @@ years_published: 1936-1970
 location: France
 nosheets: 43
 infourl: http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=2808280
-geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/france_250k.geojson
+geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/europe/france_250k.geojson
 ---

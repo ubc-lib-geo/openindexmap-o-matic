@@ -7,5 +7,5 @@ years_published: 1945-1949
 location: China
 nosheets: 67
 infourl: http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=2808664
-geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/china_250k_L531.geojson
+geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/asia/china_250k_L531.geojson
 ---

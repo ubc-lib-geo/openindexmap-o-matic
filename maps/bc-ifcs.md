@@ -7,5 +7,5 @@ years_published: 1956-1958
 location: British Columbia
 nosheets: 149
 infourl: http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=2818908
-geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/canada_britishColumbia_ifcsm.geojson
+geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/north-america/canada_britishColumbia_ifcsm.geojson
 ---

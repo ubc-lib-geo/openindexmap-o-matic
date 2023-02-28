@@ -7,5 +7,5 @@ years_published: 1958
 location: British Columbia
 nosheets: 97
 infourl: http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=2824094
-geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/canada_britishColumbia_columbiaRiverBasin_1958.geojson
+geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/north-america/canada_britishColumbia_columbiaRiverBasin_1958.geojson
 ---
