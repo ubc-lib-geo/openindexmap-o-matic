@@ -11,52 +11,67 @@ layout: default
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
     <!-- Import Turf Module - Needed to calculate bounding boxes -->
     <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/map-layout.css">
 </head>
 
 <body>
 
-    <div class="mapinfowrapper">
-        <span class="mapinfo">Scale {{ page.scale }}</span>
-        <span class="mapinfo">Years {{ page.years_published }}</span>
-        <span class="mapinfo">{{ page.nosheets }} map sheets</span>
-    </div>
+    <div style=" position: sticky; padding-top: 3%; padding-bottom: 2%; top: 0%; left: 3%; background-color: #fdfdfd; z-index: 0; min-width: 90%">
+        <div class="mapinfowrapper">
+            <span class="mapinfo">Scale {{ page.scale }}</span>
+            <span class="mapinfo">Years {{ page.years_published }}</span>
+            <span class="mapinfo">{{ page.nosheets }} map sheets</span>
+        </div>
+        <h1 class="page-heading">{{ page.title }}</h1>
 
-    <h1 class="page-heading">{{ page.title }}</h1>
-
-    <div id="buttonWrapper">
         <a href="{{ page.infourl }}" class="buttonlink" alt="Open Catalogue">Open Catalogue</a>
-        <button id="zoomto" class="btn-control" alt="Reset Map">Reset Map</button>
-        <a href="#openHelp" id="helpButton" class="buttonlink" alt="Help">&quest;</a>
     </div>
 
-    <div id="openHelp" class="overlay">
-        <div id="helpContent">
-            <a href="#" id="closeHelp">&times;</a>
-            <div id="helpText">
-                <h2>How to Use the OpenIndexMap-O-Matic</h2>
-                <div id="scrollHelp">
-                    <ul>
-                        <li>Click and drag on the map to move the tool.</li>
-                        <li>Zoom in and out by clicking the plus (+) or minus (-) buttons.</li>
-                        <li>Click on an outlined shape to see what maps are in the collection. Information about the maps in that area will be displayed below the map tool.</li>
-                        <li>Click the “Open Catalogue” button to navigate to the catalogue listing for the map series.</li>
-                        <li>Click the “Reset Map” button to return the tool to its default state.</li>
-                        <li>Click on each map listing to see more detail about a particular map.</li>
-                    </ul>
+
+    <div class="row" style="width: 100%; float: left; min-width: 90%;">
+        <div class="column" style="position: initial; padding-right: 3%; left: 0%; z-index:-1">
+
+            <div class="featurecontainer">
+                <div id="features"></div>
+            </div>
+
+            <span> </span>
+        </div>
+        <div class="column" style="position: sticky; padding-left: 3%; top: 29%; right: 0; float: right;">
+
+
+
+            <div id="openHelp" class="overlay">
+                <div id="helpContent">
+                    <a href="#" id="closeHelp">&times;</a>
+                    <div id="helpText">
+                        <h2>How to Use the OpenIndexMap-O-Matic</h2>
+                        <div id="scrollHelp">
+                            <ul>
+                                <li>Click and drag on the map to move the tool.</li>
+                                <li>Zoom in and out by clicking the plus (+) or minus (-) buttons.</li>
+                                <li>Click on an outlined shape to see what maps are in the collection. Information about the maps in that area will be displayed below the map tool.</li>
+                                <li>Click the “Open Catalogue” button to navigate to the catalogue listing for the map series.</li>
+                                <li>Click the “Reset Map” button to return the tool to its default state.</li>
+                                <li>Click on each map listing to see more detail about a particular map.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="mapcontainer">
+                <div id="map"></div>
+            </div>
+            <div id="buttonWrapper">
+               
+                <button id="zoomto" class="btn-control" alt="Reset Map">Reset Map</button>
+                <a href="#openHelp" id="helpButton" class="buttonlink" alt="Help">&quest;</a>
+            </div>
         </div>
-    </div>
+        </div>
 
-    <div class="mapcontainer">
-        <div id="map"></div>
-    </div>
-    <span> </span>
-    <div class="featurecontainer">
-        <div id="features"></div>
-    </div>
 
-    <script>
+        <script>
 	mapboxgl.accessToken = '{{ site.mapbox-access-token }}';
 
 // Location of the geojson
@@ -98,7 +113,7 @@ async function mapData(){
                 touchZoomRotate: false,
                  projection: {
                      name: 'mercator'
-                    } 
+                    }
                 });
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }));
     //  Fit to bbox, overwrite the center/zoom
@@ -189,7 +204,7 @@ async function mapData(){
         map.setFeatureState({
             'source': 'Data Layer',
             'id': ID
-            
+
         }, {
             hover: false
 
@@ -202,7 +217,7 @@ async function mapData(){
 
 
 
-       //OIM names based on table pulled from OIM specifications; second array allows for searching 
+       //OIM names based on table pulled from OIM specifications; second array allows for searching
        const OIMnames= [
             {
                 ELEMENT: "label",
@@ -455,7 +470,7 @@ async function mapData(){
 
                     //make it a hyperlink if it is the appropriate type
                     if (key == "websiteUrl" || key == "download" || key == "physHold" || key == "iiifURL" || key == "digHold") {
-                        
+
                         info = "<a href=\" " + features[i].properties[key] + "\">" + features[i].properties[key] + " </a>"
 
                         display = display + "<span><b>" + name + ":   </b>" + info + "</span> <br>";
@@ -484,7 +499,7 @@ async function mapData(){
         //add listeners
         var coll = document.getElementsByClassName("collapsible");
         var i;
-      
+
 
         for (i = 0; i < coll.length; i++) {
 
@@ -550,13 +565,12 @@ async function mapData(){
 
 
 
-
 };
 
 // Call mapData() to initalize the map
 mapData();
 
-    </script>
+        </script>
 
 </body>
 </html>
