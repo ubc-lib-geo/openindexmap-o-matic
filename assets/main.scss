@@ -11,7 +11,7 @@
 }
 
 #map canvas {
-    cursor: crosshair;
+    cursor: pointer;
 }
 
 .mapcontainer {
@@ -246,3 +246,20 @@ table, th, td {
 .footer-link {
     display: block;
 }
+
+
+.column {
+    float: left;
+    width: 47%;
+   
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+
