@@ -1,0 +1,20 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+
+
+
+
+
+.wrapper {
+    max-width: 90% !important;
+}
+
+#buttonWrapper {
+    margin: 15px 0px 15px 0px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
