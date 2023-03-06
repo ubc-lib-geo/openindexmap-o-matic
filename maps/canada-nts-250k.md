@@ -7,5 +7,5 @@ years_published: 1920-2001
 location: Canada
 nosheets: 2902
 infourl: http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=2807377
-geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/canada_250k_nts.geojson
+geojsonurl: https://ubc-lib-geo.github.io/spatial-indexes/north-america/canada_250k_nts.geojson
 ---
