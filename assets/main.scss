@@ -122,7 +122,7 @@
 }
 
 #helpContent {
-    margin: 10% auto;
+    margin: 5% auto;
     background: #fff;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -130,15 +130,18 @@
     border-top-left-radius: 25px;
     width: 30%;
     position: relative;
+    min-width: 250px;
+    max-width: 700px;
+    min-height: 350px;
 }
 
 #helpText {
     margin: 0;
-    overflow: auto;
+    min-width: 250px;
 }
 
 #helpText ul {
-    padding: 10px;
+    padding: 15px;
 }
 
 #helpText li {
@@ -147,17 +150,22 @@
 
 #helpText h2 {
     color: #fff;
+    margin: 0;
     background-color: #3386c0;
     padding: 15px;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
 }
 
+#scrollHelp {
+    display: block;
+    overflow: auto;
+    height: 300px;
+}
+
 #closeHelp {
-    display: inline;
-    position: absolute;
-    top: 7px;
-    right: 30px;
+    float: right;
+    padding: 0 10px;
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
@@ -179,8 +187,6 @@ table {
 th, td {
     width: 30%;
     overflow: auto;
-
-
 }
 
 table, th, td {

@@ -58,10 +58,10 @@ At the time of writing, OpenIndexMaps does not provide recommendations for set- 
 | --- | --- | --- | --- | --- | --- | --- |
 | slug | | URL slug | string | The name of the part of a URL which will point to a specific map series | canada-nts-500k | Required |
 | title | | Set title | string | The title for the map set, corresponding to the catalogue title when applicable | British Columbia, National Topographic System, 1:50,000 | Required |
-| scale | Scale | Scale | string | The most common scale within the map set | 1:50,000 | Optional |
-| years_published | Years | Years of publication | string | The range of time in years that the map sheets within the set have been published | 1909-2011 | Optional |
-| location | Location | Location | string | The geographic location of the map set | British Columbia | Optional |
-| nosheets | “X” map sheets | Number of Sheets | integer | The number of map sheets within the map set | 4028 | Optional |
+| scale | Scale | Scale | string | The most common scale within the map set | 1:50,000 | Required |
+| years_published | Years | Years of publication | string | The range of time in years that the map sheets within the set have been published | 1909-2011 | Required |
+| location | Location | Location | string | The geographic location of the map set | British Columbia | Required |
+| nosheets | “X” map sheets | Number of Sheets | integer | The number of map sheets within the map set | 4028 | Required |
 | infourl | More info | Information URL | string | A link to the map set on another site, such as a catalogue listing | http://resolve.library.ubc.ca/cgi-bin/catsearch?bid=6538787 | Required |
 | geojsonurl | | GeoJSON URL | string | A link to valid GeoJSON that will supply the geographic data for the map set, can be absolute or relative paths | https://ubc-lib-geo.github.io/spatial-indexes/canada_britishColumbia_50k_nts.geojson | Required |
 
@@ -73,7 +73,7 @@ Index maps are located in the “maps” folder under the root directory of the 
 
 To use the OpenIndexMap-O-Matic for your own institution’s geographic data, clone the OpenIndexMap-O-Matic and delete the UBC Library’s maps from the “maps” folder without removing the folder itself. Create markdown files for each of your index maps, ensuring that the file name matches your chosen URL slug element. Then, move each of your markdown files into the “maps” folder.
 
-To create multiple index map files, you may find it easier to write in a spreadsheet editor and run a script to output each map as a markdown file. For this route, ensure that each metadata element from the table is included, along with the triple hyphens before and after the information. Another way to create the index maps is to use the template provided below. Copy these lines of code and paste them into a markdown file, or right click <a href="https://raw.githubusercontent.com/ubc-lib-geo/openindexmap-o-matic/bac4b875c9e1fa5bd005af32221997578b21b91d/template.md">this link</a> and select "Save link as...". Switch out the placeholder information after each attribute. Note that ```layout: map-item``` should remain the same.
+To create multiple index map files, you may find it easier to write in a spreadsheet editor and run a script to output each map as a markdown file. For this route, ensure that each metadata element from the table is included, along with the triple hyphens before and after the information. Another way to create the index maps is to use the template provided below. Copy these lines of code and paste them into a markdown file, or right click <a href="https://raw.githubusercontent.com/ubc-lib-geo/openindexmap-o-matic/bac4b875c9e1fa5bd005af32221997578b21b91d/template.md">this link</a> and select "Save link as...". Remove the comment annotation and switch out the placeholder information after each attribute. Note that ```layout: map-item``` should remain the same.
 
  ```
  ---
